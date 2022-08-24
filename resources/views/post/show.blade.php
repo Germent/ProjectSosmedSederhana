@@ -38,12 +38,14 @@
                     <div class="card-body">
                       <h2 class="card-title text-gray-500">{{ $comment->user->name }} -
                         <span class="">{{ $comment->created_at->diffForHumans() }}</span>
+                       @can('delete', $comment)
                        <form action="{{ route('post.comment.destroy', [$comment->post, $comment]) }}"
                         method="post">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Delete" class="btn btn-error text-white">
+                            <input type="submit" value="Delete" class=" btn btn-error text-white">
                        </form>
+                        @endcan
                      </h2>
                       <p>{{ $comment->body }}</p>
                       </div>
