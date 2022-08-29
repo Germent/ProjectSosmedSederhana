@@ -15,7 +15,7 @@ class StorePostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request)
-    {   
+    {
         $request->user()->posts()->create($request->validate([
             'body' => ['required', 'min:8']
         ]));

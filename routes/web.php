@@ -23,11 +23,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/dashboard', TimeLineController::class)->middleware(['auth'])->name('dashboard');
 
-Route::post('post', StorePostController::class)->name('post.store');
+Route::post('post', StorePostController::class)->middleware('checkBlacklist')->name('post.store');
 Route::get('post/{post}', ShowPostController::class)->name('post.show');
-Route::post('post/{post}/comment', StoreCommentController::class)->name('post.comment.store');
+Route::post('post/{post}/comment', StoreCommentController::class)->middleware('checkBlacklist')->name('post.comment.store');
 Route::delete('post/{post}/comment/{comment}', DeleteCommentController::class)->name('post.comment.destroy');
 
 require __DIR__.'/auth.php';

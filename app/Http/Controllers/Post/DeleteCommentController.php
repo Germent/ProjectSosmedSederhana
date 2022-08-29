@@ -18,7 +18,7 @@ class DeleteCommentController extends Controller
     public function __invoke(Request $request, Post $post, Comment $comment)
     {
 
-            $this->authorize('delete', $comment , 'Hello');
+            $this->authorize('delete', $comment ,);
             $comment->delete();
             session()->flash('success', 'Comment deleted');
             return redirect()->back();
