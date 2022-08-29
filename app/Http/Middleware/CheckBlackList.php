@@ -16,7 +16,7 @@ class CheckBlackList
      */
     public function handle(Request $request, Closure $next)
     {
-        if(\Auth::user()->is_banned) return response('Your account is blacklisted by admin');
+        if(\Auth::user()->is_banned) return redirect('/dashboard')->with('error', 'Your Account Has Been Banned');
         return $next($request);
     }
 }
